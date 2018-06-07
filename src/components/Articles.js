@@ -3,18 +3,34 @@ import React from 'react' ;
 class Articles extends React.Component {
  	render() {
  		return (
- 			<div>
-				<h1 className = "title-container__title">Articles</h1>
-				<h3 id= "daa"className = "title-container__subtitle">List</h3>
-				<p>title:{this.props.title}</p>
-				<p>body:{this.props.body}</p>
-				<form onSubmit = {this.getArticels}>
-					<button> getArticels</button>
-				</form>
-			</div>
+ 				
+				<div className="container">
+					<div className="row">
+						<div className="col-md-8">
+						<h1 className="my-4">Articles
+							<small>blogres</small>
+						</h1>
+
+						{this.props.articles.map(obj => {
+					    return (
+					    	<div className="card mb-4">
+					    		<img className="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"/>
+					    		<div className="card-body">
+								    <h1 className="card-title">
+								    	{obj.title}
+								    </h1>
+									<p className="card-text">{obj.body}</p>
+									<a href="#" class="btn btn-primary">Read More &rarr;</a>
+					    		</div>
+					        </div>
+					        )
+					    })}
+					</div>
+				</div>
+				</div>
+			
  		);
  	}
 }
-
 
 export default Articles;
