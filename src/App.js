@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import 'bootstrap/dist/css/bootstrap.min.css'
 // import {BrowserRouter, Route} from 'react-router-dom';
 // import Article from "./components/Articles";
 import Articles from "./components/Articles";
@@ -10,12 +9,8 @@ import "./css/bootstrap-reboot.min.css";
 
 class App extends Component {
 
-    // const = responseJson;
     state = {
       articles: [],
-      // title: undefined,
-      // body: undefined,
-      // error: undefined
     }
     componentDidMount(){
       return fetch('https://react-blogapi.herokuapp.com/api/v1/articles')
