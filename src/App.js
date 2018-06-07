@@ -18,7 +18,7 @@ class App extends Component {
       // error: undefined
     }
     componentDidMount(){
-      return fetch('http://localhost:8000/api/v1/articles/')
+      return fetch('https://react-blogapi.herokuapp.com/api/v1/articles')
       .then((Response) => Response.json())
       .then((responseJson) => {
         console.log(responseJson)
