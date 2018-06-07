@@ -8,8 +8,8 @@
 
 # production
 /build
-.README.md
-.yarn.lock
+README.md
+yarn.lock
 # misc
 .DS_Store
 .env.local
