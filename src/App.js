@@ -7,7 +7,7 @@ import "./css/bootstrap-grid.min.css";
 import "./css/bootstrap-reboot.min.css";
 
 // const API_URL = 'http://localhost:8000/api/v1';
-const API_URL = `https://react-blogapi.herokuapp.com/api/v1/articles`;
+const API_URL = `https://react-blogapi.herokuapp.com/api/v1`;
 class App extends Component {
     state = {
       articles: [],
