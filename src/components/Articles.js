@@ -7,11 +7,13 @@ class Articles extends React.Component {
     title: undefined,
     body: undefined,
     category: undefined,
-    error: undefined
+    error: undefined,
+    datas: []
   }
 
 	addArticle = (e) => {
     	e.preventDefault();
+    	this.refs.title.focus();
     	console.log(this.refs.title.value);
     	// this.setState({
     	// 	title: this.refs.title.value,
@@ -32,19 +34,34 @@ class Articles extends React.Component {
 		  })
 		})
 		.then( (response) => { 
+			this.refs.myform.reset();
 		   //do something awesome that makes the world a better place
 		});
 	}
 
-	deleteArticle = (e) => {
-		e.preventDefault();
-		console.log(this);
-		// this.setState({
-  //   		id: 1
-  //   	})
+	deleteArticle = (obj) => {
+		let articles = this.props.articles;
+		articles.splice(obj,1);
+		console.log(obj);
+		this.setState({
+    		articles: articles
+    	});
+    	console.log(this);
+    	fetch(`${API_URL}/${obj.id}`, {
+		  method: "delete",
+		  headers: {
+		    'Accept': 'application/json',
+		    'Content-Type': 'application/json'
+		  },
+		})
+		.then( (response) => { 
+			// this.refs.myform.reset();
+		   //do something awesome that makes the world a better place
+		});
 	}
 
  	render() {
+ 		let datas = this.props.articles;
  		return (
 				<div className="container">
 					<div className="row">
@@ -62,7 +79,7 @@ class Articles extends React.Component {
 								    </h1>
 									<p className="card-text">{obj.body}</p>
 									<a href="" className="btn btn-primary">Read More &rarr;</a>
-									<button onClick= {this.deleteArticle.bind(obj.id)} className="btn btn-danger" type= "delete">Delete &rarr;</button>
+									<button onClick= {()=> this.deleteArticle(obj)} className="btn btn-danger" type= "delete">Delete &rarr;</button>
 					    		</div>
 					        </div>
 					        )
@@ -72,7 +89,7 @@ class Articles extends React.Component {
 			          <div className="card my-4">
 			            <h5 className="card-header">Add Articles</h5>
 			            <div className="card-body">
-			              <form onSubmit= {this.addArticle.bind(this)}>
+			              <form ref="myform" onSubmit= {this.addArticle.bind(this)}>
 							<input type="text" name= "title" ref="title" placeholder= "Title"/>
 							<br/>
 							<textarea rows="4" cols="30" type="text" name= "body" ref="body" placeholder= "Body"/>
